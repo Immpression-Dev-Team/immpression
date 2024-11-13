@@ -1,4 +1,5 @@
-data
-applications
+/data
+/applications/*
+!/applications/README.md
 .env
-.idea
+/.idea
