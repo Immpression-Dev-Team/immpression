@@ -1,6 +1,30 @@
 services:
+  admin:
+    build: applications/admin
+    container_name: admin
+    ports:
+      - "5137:5137"
+    environment:
+      - VITE_ADMIN_PORT=${VITE_ADMIN_PORT}
+      - ENV=${ENV}
+    restart: unless-stopped
+    networks:
+      - immpression-network
+
+  frontend-web:
+    build: applications/web-app
+    container_name: frontend-web
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_WEB_PORT=${VITE_WEB_PORT}
+      - ENV=${ENV}
+    restart: unless-stopped
+    networks:
+      - immpression-network
+
   backend:
-    build: ./Backend
+    build: applications/Backend
     container_name: backend
     ports:
       - "5000:5000"
@@ -18,9 +42,9 @@ services:
       - mongo
     restart: unless-stopped
 
-  frontend:
-    build: ./Main-App
-    container_name: frontend
+  frontend-mobile:
+    build: applications/Main-App
+    container_name: frontend-mobile
     ports:
       - "19000:19000" # Expo
       - "8081:8081" # Metro
