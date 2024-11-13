@@ -1,0 +1,57 @@
+services:
+  backend:
+    build: ./Backend
+    container_name: backend
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URL=${MONGO_URL}
+      - JWT_SECRET=${JWT_SECRET}
+      - CORS_ORIGIN=${CORS_ORIGIN}
+      - CLOUDINARY_API=${CLOUDINARY_API}
+      - CLOUDINARY_SECRET=${CLOUDINARY_SECRET}
+      - CLOUDINARY_CLOUD=${CLOUDINARY_CLOUD}
+      - ENV=${ENV}
+    networks:
+      - immpression-network
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+  frontend:
+    build: ./Main-App
+    container_name: frontend
+    ports:
+      - "19000:19000" # Expo
+      - "8081:8081" # Metro
+    stdin_open: true # Keeps stdin open for interactive output on startup, allowing expo url and qr code to be displayed
+    tty: true # Allocates a pseudo-TTY
+    environment:
+      - ENV=${ENV}
+      - EXPO_TOKEN=${EXPO_TOKEN}
+    restart: unless-stopped
+    networks:
+      - immpression-network
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/mongo_data
+    restart: unless-stopped
+    networks:
+      - immpression-network
+
+volumes:
+  mongo_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./data
+      o: bind
+
+networks:
+  immpression-network:
+    driver: bridge
