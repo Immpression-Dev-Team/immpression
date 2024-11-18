@@ -8,6 +8,6 @@
 ---
 
 ```
-cd .../Root/applications
-git clone <github repo ssh key>
+cd .../immpression/applications
+git clone git@github.com:Immpression-Dev-Team/immpression.git
 ```
