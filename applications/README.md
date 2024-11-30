@@ -9,5 +9,5 @@
 
 ```
 cd .../immpression/applications
-git clone git@github.com:Immpression-Dev-Team/immpression.git
+git clone <git repo>
 ```

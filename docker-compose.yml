@@ -6,7 +6,10 @@ services:
       - "5137:5137"
     environment:
       - VITE_ADMIN_PORT=${VITE_ADMIN_PORT}
-      - ENV=${ENV}
+      - VITE_APP_ENV=${VITE_APP_ENV}
+      - CHOKIDAR_USEPOLLING=${CHOKIDAR_USEPOLLING}
+    volumes:
+      - ./applications/admin:/app
     restart: unless-stopped
     networks:
       - immpression-network
@@ -18,7 +21,10 @@ services:
       - "3000:3000"
     environment:
       - VITE_WEB_PORT=${VITE_WEB_PORT}
-      - ENV=${ENV}
+      - VITE_APP_ENV=${VITE_APP_ENV}
+      - CHOKIDAR_USEPOLLING=${CHOKIDAR_USEPOLLING}
+    volumes:
+      - ./applications/web-app:/app
     restart: unless-stopped
     networks:
       - immpression-network
@@ -27,7 +33,7 @@ services:
     build: applications/Backend
     container_name: backend
     ports:
-      - "5000:5000"
+      - "4000:4000"
     environment:
       - MONGO_URL=${MONGO_URL}
       - JWT_SECRET=${JWT_SECRET}
@@ -35,7 +41,10 @@ services:
       - CLOUDINARY_API=${CLOUDINARY_API}
       - CLOUDINARY_SECRET=${CLOUDINARY_SECRET}
       - CLOUDINARY_CLOUD=${CLOUDINARY_CLOUD}
-      - ENV=${ENV}
+      - VITE_APP_ENV=${VITE_APP_ENV}
+      - CHOKIDAR_USEPOLLING=${CHOKIDAR_USEPOLLING}
+    volumes:
+      - ./applications/Backend:/app
     networks:
       - immpression-network
     depends_on:
@@ -51,8 +60,11 @@ services:
     stdin_open: true # Keeps stdin open for interactive output on startup, allowing expo url and qr code to be displayed
     tty: true # Allocates a pseudo-TTY
     environment:
-      - ENV=${ENV}
+      - VITE_APP_ENV=${VITE_APP_ENV}
       - EXPO_TOKEN=${EXPO_TOKEN}
+      - CHOKIDAR_USEPOLLING=${CHOKIDAR_USEPOLLING}
+    volumes:
+      - ./applications/Main-App:/app
     restart: unless-stopped
     networks:
       - immpression-network
