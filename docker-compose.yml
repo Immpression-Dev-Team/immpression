@@ -30,7 +30,7 @@ services:
       - immpression-network
 
   backend:
-    build: applications/Backend
+    build: applications/backend
     container_name: backend
     ports:
       - "4000:4000"
@@ -44,7 +44,7 @@ services:
       - VITE_APP_ENV=${VITE_APP_ENV}
       - CHOKIDAR_USEPOLLING=${CHOKIDAR_USEPOLLING}
     volumes:
-      - ./applications/Backend:/app
+      - ./applications/backend:/app
     networks:
       - immpression-network
     depends_on:
@@ -52,7 +52,7 @@ services:
     restart: unless-stopped
 
   frontend-mobile:
-    build: applications/Main-App
+    build: applications/mobile-app
     container_name: frontend-mobile
     ports:
       - "19000:19000" # Expo
@@ -64,7 +64,7 @@ services:
       - EXPO_TOKEN=${EXPO_TOKEN}
       - CHOKIDAR_USEPOLLING=${CHOKIDAR_USEPOLLING}
     volumes:
-      - ./applications/Main-App:/app
+      - ./applications/mobile-app:/app
     restart: unless-stopped
     networks:
       - immpression-network
