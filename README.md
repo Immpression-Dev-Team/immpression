@@ -114,7 +114,7 @@ git clone git@github.com:Immpression-Dev-Team/immpression.git
 - Create data folder for persistent local mongoDB storage in root folder (immpression)
   - Linux, MacOS, & Windows: `mkdir data`
 
-### Step 5
+### Step 3
 
 #### Populate .env File
 
