@@ -10,6 +10,7 @@ services:
       - CHOKIDAR_USEPOLLING=${CHOKIDAR_USEPOLLING}
     volumes:
       - ./applications/admin:/app
+      - /app/node_modules
     restart: unless-stopped
     networks:
       - immpression-network
@@ -25,6 +26,7 @@ services:
       - CHOKIDAR_USEPOLLING=${CHOKIDAR_USEPOLLING}
     volumes:
       - ./applications/web-app:/app
+      - /app/node_modules
     restart: unless-stopped
     networks:
       - immpression-network
