@@ -1,0 +1,26 @@
+name: Reusable CommitLint Workflow
+
+on:
+  workflow_call:
+
+jobs:
+  lint-commits:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Commitlint
+        run: npm install --save-dev @commitlint/cli @commitlint/config-conventional
+
+      - name: Run CommitLint
+        uses: wagoid/commitlint-github-action@v5
+        with:
+          configFile: 'commitlint.config.js'
+          failOnWarnings: true
+
