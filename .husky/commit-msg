@@ -1,0 +1,5 @@
+#!/bin/sh
+docker run --rm \
+  -v "$(pwd):/app" \
+  -w /app node:18 \
+  npx --no-install commitlint --edit "$1"
