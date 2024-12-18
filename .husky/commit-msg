@@ -1,3 +1,4 @@
+#!/bin/sh
 docker run --rm \
   -v "$(pwd):/app" \
   -w /app node:18 sh -c "npm install --no-save @commitlint/cli @commitlint/config-conventional && npx commitlint --config commitlint.config.cjs --edit \"$1\""
