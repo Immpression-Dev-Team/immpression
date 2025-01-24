@@ -3,3 +3,7 @@
 !/applications/README.md
 .env
 /.idea
+/node_modules
+package-lock.json
+package.json
+nginx.conf

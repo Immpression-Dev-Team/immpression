@@ -1,0 +1,22 @@
+worker_processes auto;
+
+events {
+    worker_connections 1024;
+}
+
+stream {
+    server {
+        listen 5037;
+        proxy_pass $HOST_IP:15037; # Forward ADB traffic as raw TCP
+    }
+
+    server {
+        listen 5554;
+        proxy_pass $HOST_IP:15554;
+    }
+
+    server {
+        listen 5555;
+        proxy_pass $HOST_IP:15555;
+    }
+}
