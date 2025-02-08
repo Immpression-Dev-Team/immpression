@@ -39,37 +39,23 @@ services:
     environment:
       - MONGO_URL=${MONGO_URL}
       - JWT_SECRET=${JWT_SECRET}
-      - CORS_ORIGIN=${CORS_ORIGIN}
       - CLOUDINARY_API=${CLOUDINARY_API}
       - CLOUDINARY_SECRET=${CLOUDINARY_SECRET}
       - CLOUDINARY_CLOUD=${CLOUDINARY_CLOUD}
       - VITE_APP_ENV=${VITE_APP_ENV}
       - CHOKIDAR_USEPOLLING=${CHOKIDAR_USEPOLLING}
+      - VITE_APP_ADMIN_PORT=${VITE_APP_ADMIN_PORT}
+      - VITE_APP_WEB_PORT=${VITE_APP_WEB_PORT}
+      - MOBILE_PORT=${MOBILE_PORT}
+      - HOST_IP=${HOST_IP}
     volumes:
       - ./applications/backend:/app
+      - /app/node_nodules
     networks:
       - immpression-network
     depends_on:
       - mongo
     restart: unless-stopped
-
-  frontend-mobile:
-    build: applications/mobile-app
-    container_name: frontend-mobile
-    ports:
-      - "19000:19000" # Expo
-      - "8081:8081" # Metro
-    stdin_open: true # Keeps stdin open for interactive output on startup, allowing expo url and qr code to be displayed
-    tty: true # Allocates a pseudo-TTY
-    environment:
-      - VITE_APP_ENV=${VITE_APP_ENV}
-      - EXPO_TOKEN=${EXPO_TOKEN}
-      - CHOKIDAR_USEPOLLING=${CHOKIDAR_USEPOLLING}
-    volumes:
-      - ./applications/mobile-app:/app
-    restart: unless-stopped
-    networks:
-      - immpression-network
 
   mongo:
     image: mongo:latest
