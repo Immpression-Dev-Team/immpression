@@ -16,23 +16,20 @@
 
 # TODO: RUN THIS FILE AFTER YOU HAVE DOCKER AND GIT SETUP FROM INSIDE THE IMMPRESSION FOLDER
 
-# Prompt user for confirmation
 echo "This script requires Docker and Git to be installed."
 # shellcheck disable=SC2162
 read -p "Have you installed Docker and Git? (y/n): " USER_INPUT
 
-# Convert input to lowercase
 USER_INPUT=$(echo "$USER_INPUT" | tr '[:upper:]' '[:lower:]')
 
-# Check input with a wildcard else condition
 if [ "$USER_INPUT" = "y" ] || [ "$USER_INPUT" = "yes" ]; then
     echo "Proceeding with script..."
 elif [ "$USER_INPUT" = "n" ] || [ "$USER_INPUT" = "no" ]; then
     echo "Please install Docker and Git before running this script."
-    exit 1  # Exit script if the user says "no"
+    exit 1
 else
     echo "Invalid input. Please enter 'y' or 'n'."
-    exit 1  # Exit script if the input is unrecognized
+    exit 1
 fi
 
 # ROOT FOLDER SETUP:
@@ -41,11 +38,9 @@ echo "ROOT SETUP:"
 # Set hooksPath
 git config core.hooksPath .husky
 
-# Expected output
 EXPECTED_OUTPUT=".husky"
 ACTUAL_OUTPUT=$(git config --get core.hooksPath)
 
-# Print outputs
 echo "Output should be $EXPECTED_OUTPUT, output: $ACTUAL_OUTPUT"
 
 if [ "$ACTUAL_OUTPUT" = "$EXPECTED_OUTPUT" ]; then
@@ -67,7 +62,6 @@ git config core.hooksPath .husky
 
 ACTUAL_OUTPUT=$(git config --get core.hooksPath)
 
-# Print outputs
 echo "Output should be $EXPECTED_OUTPUT, output: $ACTUAL_OUTPUT"
 
 if [ "$ACTUAL_OUTPUT" = "$EXPECTED_OUTPUT" ]; then
@@ -89,7 +83,6 @@ git config core.hooksPath .husky
 
 ACTUAL_OUTPUT=$(git config --get core.hooksPath)
 
-# Print outputs
 echo "Output should be $EXPECTED_OUTPUT, output: $ACTUAL_OUTPUT"
 
 if [ "$ACTUAL_OUTPUT" = "$EXPECTED_OUTPUT" ]; then
@@ -111,7 +104,6 @@ git config core.hooksPath .husky
 
 ACTUAL_OUTPUT=$(git config --get core.hooksPath)
 
-# Print outputs
 echo "Output should be $EXPECTED_OUTPUT, output: $ACTUAL_OUTPUT"
 
 if [ "$ACTUAL_OUTPUT" = "$EXPECTED_OUTPUT" ]; then
@@ -133,7 +125,6 @@ git config core.hooksPath .husky
 
 ACTUAL_OUTPUT=$(git config --get core.hooksPath)
 
-# Print outputs
 echo "Output should be $EXPECTED_OUTPUT, output: $ACTUAL_OUTPUT"
 
 if [ "$ACTUAL_OUTPUT" = "$EXPECTED_OUTPUT" ]; then
@@ -155,7 +146,6 @@ git config core.hooksPath .husky
 
 ACTUAL_OUTPUT=$(git config --get core.hooksPath)
 
-# Print outputs
 echo "Output should be $EXPECTED_OUTPUT, output: $ACTUAL_OUTPUT"
 
 if [ "$ACTUAL_OUTPUT" = "$EXPECTED_OUTPUT" ]; then
@@ -169,8 +159,6 @@ echo ""
 
 echo "Scripts Completed Successfully!"
 
-# Requires the installation of docker
-# and creation of docker account before running
 docker login
 
 # This image can be found on Docker Hub
