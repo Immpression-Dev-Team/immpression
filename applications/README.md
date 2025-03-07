@@ -11,3 +11,5 @@
 cd .../immpression/applications
 git clone <git repo>
 ```
+- Create .env file in mobile folder (applications/mobile-app) 
+    - Use the same commands from the root README. The only thing needed in this env file is the JWT_SECRET
