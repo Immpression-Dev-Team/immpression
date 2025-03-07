@@ -1,6 +1,7 @@
 # This tells your local github repo to run husky without the need to
 # install husky directly. I have created a docker image that will
-# containerized version of husky.
+# run a containerized version of husky. I have also added the
+# automation of docker login and pulling of the husky image I built.
 
 # THESE COMMANDS DO NOT WORK IN WINDOWS POWERSHELL OR CMD...
 # THEY NEED TO BE RUN FROM GIT BASH TERMINAL IF ON WINDOWS.
