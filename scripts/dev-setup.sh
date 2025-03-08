@@ -166,3 +166,4 @@ docker pull premsanity/husky-commitlint
 echo ""
 
 echo "Congrats! if you followed the complete setup in the correct order you should be ready to start developing again!"
+

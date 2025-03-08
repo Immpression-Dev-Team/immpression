@@ -118,14 +118,14 @@ git clone git@github.com:Immpression-Dev-Team/immpression.git
   - Windows: `echo. > .env`
 - Create data folder for persistent local mongoDB storage in root folder (immpression)
   - Linux, macOS, & Windows: `mkdir data`
-  - 
+
 ### Step 3
 
 #### Populate .env File
 
 - Use .env-example to populate your root .env file, you will need to reach out to someone for sensitive values
 - To populate EXPO_TOKEN follow the steps below:
-  - Navigate to Expo Go - Access Tokens. Replace this URL with your username: https://expo.dev/accounts/<YOUR_USERNAME>/settings/access-tokens
+  - Navigate to Expo Go - Access Tokens. Replace this URL with your username: `https://expo.dev/accounts/<YOUR_USERNAME>/settings/access-tokens`
   - Create a new token and paste its value into EXPO_TOKEN in your .env file
 
 ### Step 4
@@ -151,8 +151,8 @@ docker logs -f <container_name>
 ```
 
 - -d stands for "detached", this means the docker network will run the containers in the background, keeping the current terminal open to be used.
-- -v stands for "volumes", in this case it means that it will delete the cached volumes in the docker containers. There is a data folder that folder locally that holds data for the backend if you are using the app not using the production database. Deleting the data folder locally and using -v when bringing the container down will reset the database.
-- -f stands "follow", running `docker logs <container_name>` without -f will only show the logs that already happened, -f will keep the logs open and show logs as they happen until closed.
+- -v stands for "volumes", in this case it means that it will delete the cached volumes in the docker containers. There is a data folder locally that holds data for the backend if you are using the app not using the production database. Deleting the data folder locally and using -v when bringing the container down will reset the database.
+- -f stands for "follow", running `docker logs <container_name>` without -f will only show the logs that already happened, -f will keep the logs open and show logs as they happen until closed.
 
 There are many more commands and flags, but these are the ones you will need to use the most.
 
