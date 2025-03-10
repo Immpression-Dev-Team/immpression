@@ -50,7 +50,7 @@ services:
       - HOST_IP=${HOST_IP}
     volumes:
       - ./applications/backend:/app
-      - /app/node_nodules
+      - /app/node_modules
     networks:
       - immpression-network
     depends_on:

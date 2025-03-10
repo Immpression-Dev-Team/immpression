@@ -1,3 +1,6 @@
+# No need to run this script unless you are working with the production
+# environment using terraform
+
 # INFRA FOLDER SETUP:
 
 echo "INFRA SETUP:"
