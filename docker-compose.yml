@@ -48,6 +48,8 @@ services:
       - VITE_APP_WEB_PORT=${VITE_APP_WEB_PORT}
       - MOBILE_PORT=${MOBILE_PORT}
       - HOST_IP=${HOST_IP}
+      - STRIPE_PUBLISH_KEY=$(STRIPE_PUBLISH_KEY}
+      - STRIPE_SECRET_KEY=$(STRIPE_SECRET_KEY}
     volumes:
       - ./applications/backend:/app
       - /app/node_modules
@@ -65,6 +67,35 @@ services:
     volumes:
       - ./data:/mongo_data
     restart: unless-stopped
+    networks:
+      - immpression-network
+
+  test-runner-backend:
+    image: node:18
+    container_name: test-runner
+    working_dir: /app
+    volumes:
+      - ./applications/backend:/app
+    depends_on:
+      - backend
+      - mongo
+    environment:
+      - NODE_ENV=test
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - STRIPE_PUBLISH_KEY=${STRIPE_PUBLISH_KEY}
+      - MONGO_URL=${MONGO_URL}
+      - JWT_SECRET=${JWT_SECRET}
+    command: ["npm", "test"]
+    networks:
+      - immpression-network
+
+  test-runner-frontend:
+    image: node:18
+    container_name: test-runner-frontend
+    working_dir: /app
+    volumes:
+      - ./applications/mobile-app:/app
+    command: [ "npm", "test" ]
     networks:
       - immpression-network
 
